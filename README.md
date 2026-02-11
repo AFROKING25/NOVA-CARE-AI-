@@ -1,20 +1,50 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
 
-# Run and deploy your AI Studio app
+# 💎 NOVA CARE AI
+### *Psychological First Aid & Emotional Resonance*
 
-This contains everything you need to run your app locally.
+Nova Care is a state-of-the-art AI companion designed to provide immediate emotional support, grounding exercises, and mental clarity. Built with **radical empathy** and powered by the latest Gemini 2.5/3 Flash & Pro models.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1PImxRXmZzJm4OSP_W0p1Yz2Ke0Eri1c3
+## 🚀 Key Features
 
-## Run Locally
+- **Live Voice Sessions**: Real-time, low-latency therapeutic conversation using Gemini Live API.
+- **Zen Vision**: Manifest calming, meditative visuals generated specifically for your emotional state.
+- **Severity Staging**: Automated triage (Stages 1-4) to determine the appropriate level of care.
+- **Identity Vault**: A secure, encrypted space for your psychological context and growth metrics.
+- **Reflection Lab**: Advanced journaling with AI pattern recognition and mood volatility tracking.
+- **Sensory Grounding**: Interactive 5-4-3-2-1 grounding exercises for immediate stabilization.
 
-**Prerequisites:**  Node.js
+## 🛠️ Tech Stack
 
+- **Framework**: React 19 (Vite)
+- **Styling**: Tailwind CSS
+- **Intelligence**: Google Gemini API (@google/genai)
+- **Icons**: Lucide React
+- **Charts**: Recharts
+- **Deployment**: Vercel
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 📦 Deployment Instructions
+
+### 1. GitHub Integration
+1. Initialize a git repository: `git init`
+2. Add all files: `git add .`
+3. Commit: `git commit -m "feat: initial production-ready release"`
+4. Create a new repository on GitHub.
+5. Link and push:
+   ```bash
+   git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+   git branch -M main
+   git push -u origin main
+   ```
+
+### 2. Vercel Deployment
+1. Go to [Vercel](https://vercel.com).
+2. Click **Add New** > **Project**.
+3. Import your GitHub repository.
+4. **Environment Variables**: Add your `API_KEY` obtained from [Google AI Studio](https://aistudio.google.com/).
+5. Click **Deploy**.
+
+## 🛡️ Privacy & Security
+Nova Care is designed as a "First Aid" tool. It is not a replacement for professional clinical therapy. User data is stored locally in the browser via `localStorage` and sent to the Gemini API via secure channels.
+
+---
+*Built with ❤️ for mental health accessibility.*
