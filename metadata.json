@@ -1,0 +1,8 @@
+{
+  "name": "Copy of NOVA CARE AI",
+  "description": "A top-tier psychological first-aid AI companion with Zen Vision and emotional memory.",
+  "requestFramePermissions": [
+    "microphone",
+    "camera"
+  ]
+}
