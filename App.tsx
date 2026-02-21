@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { TherapySpace } from './components/TherapySpace';
 import { Journal } from './components/Journal';
 import { ProfileTab } from './components/ProfileTab';
+import { MeditationLibrary } from './components/MeditationLibrary';
+import { MeditationPlayer } from './components/MeditationPlayer';
 import { ProfileSetupWizard } from './components/ProfileSetupWizard';
 import { SettingsModal } from './components/SettingsModal';
 import { Logo } from './components/Logo';
@@ -12,15 +14,16 @@ import {
   ArrowRight, Mail, Key, User as UserIcon, LogOut,
   ChevronRight, Fingerprint, Settings
 } from 'lucide-react';
-import { UserProfile, AuthState } from './types';
+import { UserProfile, AuthState, Meditation } from './types';
 
-type Tab = 'home' | 'session' | 'journal' | 'profile';
+type Tab = 'home' | 'session' | 'journal' | 'profile' | 'meditation';
 type Theme = 'midnight' | 'forest' | 'rose' | 'lavender';
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<Tab>('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [selectedMeditation, setSelectedMeditation] = useState<Meditation | null>(null);
   const [auth, setAuth] = useState<AuthState>(() => {
     const saved = localStorage.getItem('nova_auth_session');
     return {
@@ -99,6 +102,7 @@ const App: React.FC = () => {
     switch (activeTab) {
       case 'session': return <TherapySpace />;
       case 'journal': return <Journal />;
+      case 'meditation': return <MeditationLibrary onSelect={(m) => setSelectedMeditation(m)} />;
       case 'profile': return <ProfileTab user={auth.user} onUpdate={updateProfile} />;
       default:
         return (
@@ -284,6 +288,7 @@ const App: React.FC = () => {
           <div className="hidden md:flex items-center gap-8">
             <button onClick={() => setActiveTab('home')} className={`font-bold text-sm uppercase tracking-widest transition-colors ${activeTab === 'home' ? 'text-white' : 'text-slate-500 hover:text-white'}`}>Home</button>
             <button onClick={() => setActiveTab('session')} className={`font-bold text-sm uppercase tracking-widest transition-colors ${activeTab === 'session' ? 'text-white' : 'text-slate-500 hover:text-white'}`}>Sessions</button>
+            <button onClick={() => setActiveTab('meditation')} className={`font-bold text-sm uppercase tracking-widest transition-colors ${activeTab === 'meditation' ? 'text-white' : 'text-slate-500 hover:text-white'}`}>Meditations</button>
             <button onClick={() => setActiveTab('journal')} className={`font-bold text-sm uppercase tracking-widest transition-colors ${activeTab === 'journal' ? 'text-white' : 'text-slate-500 hover:text-white'}`}>Reflections</button>
             
             <div className="h-6 w-px bg-white/10" />
@@ -328,10 +333,18 @@ const App: React.FC = () => {
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-black/80 backdrop-blur-2xl border-t border-white/5 px-6 py-4 flex justify-between items-center z-50">
         <button onClick={() => setActiveTab('home')} className={activeTab === 'home' ? 'text-primary' : 'text-slate-500'}><Logo size={24} /></button>
         <button onClick={() => setActiveTab('session')} className={activeTab === 'session' ? 'text-primary' : 'text-slate-500'}><Brain size={24} /></button>
+        <button onClick={() => setActiveTab('meditation')} className={activeTab === 'meditation' ? 'text-primary' : 'text-slate-500'}><Sparkles size={24} /></button>
         <button onClick={() => setActiveTab('journal')} className={activeTab === 'journal' ? 'text-primary' : 'text-slate-500'}><BookHeart size={24} /></button>
         <button onClick={() => setActiveTab('profile')} className={activeTab === 'profile' ? 'text-primary' : 'text-slate-500'}><UserIcon size={24} /></button>
-        <button onClick={() => setShowSettings(true)} className="text-slate-500"><Settings size={24} /></button>
       </div>
+
+      {/* Meditation Player Overlay */}
+      {selectedMeditation && (
+        <MeditationPlayer 
+          meditation={selectedMeditation} 
+          onClose={() => setSelectedMeditation(null)} 
+        />
+      )}
     </div>
   );
 };

@@ -84,3 +84,20 @@ export interface ZenVideo {
   url: string;
   date: Date;
 }
+
+export interface Meditation {
+  id: string;
+  title: string;
+  description: string;
+  duration: string;
+  category: 'relaxation' | 'focus' | 'sleep';
+  script: string[];
+  image: string;
+}
+
+export interface MeditationState {
+  isActive: boolean;
+  currentMeditation: Meditation | null;
+  currentStepIndex: number;
+  isPlaying: boolean;
+}
